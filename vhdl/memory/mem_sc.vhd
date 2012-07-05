@@ -112,7 +112,7 @@ port (
 );
 end component;
 
-	constant ENABLE_COPY : boolean := true;
+	constant ENABLE_COPY : boolean := false;
 
 --
 --	signals for mem interface
@@ -345,11 +345,11 @@ begin  -- process
 	-- commands? E.g. putfield, get/putstatic, stidx, iastore
 	-- Looks ok as state_dcache is changed in the state machine
 	ram_dcache <= state_dcache;
-	if mem_in.rd = '1' then
+	if mem_in.rd = '1' or mem_in.getfield = '1' then
 		ram_dcache <= bypass;
 	elsif mem_in.rdc = '1' then
 		ram_dcache <= direct_mapped_const;
-	elsif mem_in.rdf='1' or mem_in.wrf='1' or mem_in.getfield = '1' or mem_in.iaload = '1' then
+	elsif mem_in.rdf='1' or mem_in.wrf='1' or mem_in.iaload = '1' then
 		ram_dcache <= full_assoc;		
 	end if;
 end process;
@@ -1066,7 +1066,7 @@ begin
 			when gf3 =>
 				state_rd <= '1';
 				was_a_hwo <= sc_mem_in.rd_data(31);
-				state_dcache <= full_assoc;
+				--state_dcache <= full_assoc;
                           
 			when gf4 =>
 
@@ -1079,7 +1079,7 @@ begin
 
 			when pf1 =>
 				state_rd <= '1';
-				state_dcache <= full_assoc;
+				--state_dcache <= full_assoc;
 
 			when pf2 =>
 
@@ -1094,7 +1094,7 @@ begin
 					ocin.wr_pf <= '1';
 				end if;
 				state_wr <= '1';
-				state_dcache <= full_assoc;
+				--state_dcache <= full_assoc;
                           
 			when cp0 =>
 --				read_ocache<='0';
