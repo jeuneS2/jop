@@ -32,10 +32,10 @@
 	  ================================================================-->
 	
 	<!-- set property usb to true for an USB based board (dspio, usbmin, lego) -->
-	<property name="usb" value="true"/>
+	<!-- <property name="usb" value="true"/> -->
 
 	<!-- com1 is the usual serial port -->
-	<condition property="com-port" value="/dev/ttyS0">
+	<condition property="com-port" value="/dev/ttyUSB0">
 	  <not> <istrue value="${usb}"/> </not>
 	</condition>
 
@@ -53,10 +53,10 @@
 	</condition>
 
 	<!-- select how to configure the board -->
-	<property name="use-config-usb" value="true"/>
+	<!-- <property name="use-config-usb" value="true"/> -->
 <!-- 	<property name="use-config-byteblast" value="true"/> -->
 <!-- 	<property name="use-config-usbblast" value="true"/> -->
-<!--	<property name="use-config-urjtag" value="true"/> -->
+	<property name="use-config-urjtag" value="true"/>
 
 	<!-- choose blaster type for config-byteblast -->
 	<condition property="blaster-type" value="ByteBlastMV">
@@ -90,7 +90,7 @@
 	<!-- <property name="qproj" value="cycfpu"/> -->
 	<!-- <property name="qproj" value="cyc256x16"/> -->
 	<!-- <property name="qproj" value="sopcmin"/> -->
-	<property name="qproj" value="usbmin"/> 
+	<property name="qproj" value="altde2-70cmp_cache"/> 
 	
 	<!-- Nelson uncomment this -->
 	<!-- <property name="qproj" value="cyc12baseio"/> -->

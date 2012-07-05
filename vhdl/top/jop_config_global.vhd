@@ -37,10 +37,10 @@ use work.sc_pack.all;
 package jop_config_global is
 
 	-- on-chip memory size (stack plus JVM vaiables and constants)
-	constant STACK_SIZE_GLOBAL : integer := 8; -- # of address bits of internal ram (sp,...)
+	constant STACK_SIZE_GLOBAL : integer := 9; -- # of address bits of internal ram (sp,...)
 	
 	-- enable or disable the object cache
-	constant USE_OCACHE : std_logic := '0';
+	constant USE_OCACHE : std_logic := '1';
 	
 	-- depends on main memory size (sc_pack)
 	-- should be SC_ADDR_SIZE, but the file order would
@@ -55,7 +55,7 @@ package jop_config_global is
 	constant OCACHE_INDEX_BITS : integer := 3;
 
 	-- enable or disable the array cache
-	constant USE_ACACHE : std_logic := '1';
+	constant USE_ACACHE : std_logic := '0';
 	
 	-- depends on main memory size (sc_pack)
 	-- should be SC_ADDR_SIZE, but the file order would

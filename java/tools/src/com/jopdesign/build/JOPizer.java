@@ -56,7 +56,7 @@ public class JOPizer extends OldAppInfo implements Serializable {
 	public static final int CLASSINFO_REFARRY = GCINFO_NONREFARRY + 1;
 	public static final int CLINITS_OFFSET = 11;
 
-	public static final boolean CACHE_INVAL = false;
+	public static final boolean CACHE_INVAL = true;
 	public static final boolean USE_RTTM = false;
 
 	/**
