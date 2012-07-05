@@ -203,18 +203,10 @@ begin
 			if arb_out(i).rd = '1' then
 				next_state(i) <= pending;
 				next_reg_out(i) <= arb_out(i);
-				if slot(i) = '1' then
-					next_state(i) <= waitR;
-					next_reg_out(i).rd <= '0';
-				end if;
 			end if;
 			if arb_out(i).wr = '1' then
 				next_state(i) <= pending;
 				next_reg_out(i) <= arb_out(i);
-				if slot(i) = '1' then
-					next_state(i) <= waitW;
-					next_reg_out(i).wr <= '0';
-				end if;
 			end if;
 
 			-- "phase out" accesses for pipelining
@@ -249,13 +241,6 @@ begin
 			-- pass on registered value
 			if slot(i) = '1' then
 				mem_out <= reg_out(i);
-			end if;
-			-- direct pass through
-			if slot(i) = '1' and arb_out(i).rd = '1' then
-				mem_out <= arb_out(i);
-			end if;
-			if slot(i) = '1' and arb_out(i).wr = '1' then
-				mem_out <= arb_out(i);
 			end if;
 		end loop;  -- i		
 	end process mux;
