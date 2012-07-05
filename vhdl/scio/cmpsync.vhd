@@ -129,14 +129,14 @@ begin
   	end process;
   	
   -- output
-  process (next_state, next_locked_id, sync_in_array)
+  process (state, locked_id, sync_in_array)
   begin
 
 	for i in 0 to cpu_cnt-1 loop
 		sync_out_array(i).s_out <= sync_in_array(0).s_in;  -- Bootup
 	end loop;
 	
-  	case next_state is
+  	case state is
   		when idle =>
   			for i in 0 to cpu_cnt-1 loop
   				sync_out_array(i).halted <= '0';
@@ -144,7 +144,7 @@ begin
   			
   		when locked =>
   			for i in 0 to cpu_cnt-1 loop
-  				if (i = next_locked_id) then
+  				if (i = locked_id) then
   					sync_out_array(i).halted <= '0';
   				else
   					sync_out_array(i).halted <= '1';
