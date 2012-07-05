@@ -49,6 +49,9 @@ port (
 	oUART_CTS		: in std_logic;
 	iUART_RTS		: out std_logic;
 
+	oLEDR           : out std_logic_vector(17 downto 0);
+	iSW				: in std_logic_vector(17 downto 0);
+
 --
 --	watchdog
 --
@@ -109,6 +112,8 @@ begin
 		ser_txd => txd,
 		ser_rxd => ser_rxd,
 		oUART_CTS => '1',
+		iSW => (others => '0'),
+		oLEDR => open,
 		oSRAM_A => ram_addr,
 		SRAM_DQ => ram_data(31 downto 0),
 		oSRAM_CE1_N => oSRAM_CE1_N,
@@ -240,7 +245,7 @@ begin
 		A12 => ram_addr(12),
 		A13 => ram_addr(13),
 		A14 => ram_addr(14),
-		A15 => '0', -- ram_addr(15),
+		A15 => ram_addr(15),
 		A16 => '0', -- ram_addr(16),
 		A17 => '0', -- ram_addr(17),
 		A18 => '0', -- ram_addr(18),
